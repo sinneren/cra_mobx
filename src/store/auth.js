@@ -1,4 +1,4 @@
-import {observable, computed} from 'mobx';
+import {observable, computed, action} from 'mobx';
 
 class Auth {
     @observable auth;
@@ -8,6 +8,9 @@ class Auth {
     }
     @computed get isAuth() {
         return this.auth;
+    }
+    @action setAuth() {
+        this.auth = true;
     }
 }
 const auth = new Auth();

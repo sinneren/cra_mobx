@@ -1,0 +1,15 @@
+.Menu {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+    padding: 10px;
+    margin: 0;
+}
+.Menu-item {
+    display: inline-block;
+    color: aliceblue;
+    font-size: 1rem;
+}
+.Menu-item + .Menu-item{
+    margin-left: 10px;
+}

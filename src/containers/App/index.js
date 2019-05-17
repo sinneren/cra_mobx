@@ -4,6 +4,7 @@ import { Router } from "@reach/router";
 
 import Index from '../../pages/index';
 import NotFound from '../../pages/nf';
+import SignUpPage from '../../pages/signup';
 
 import auth from '../../store/auth';
 
@@ -11,13 +12,17 @@ import './index.css';
 
 const stores = { auth };
 
-const App = () => (
-    <Provider {...stores}>
-      <Router>
-        <Index path="/" />
-        <NotFound path="*" />
-      </Router>
-    </Provider>
-)
+const App = (props) => {
+    const { firebase } = props;
+    return (
+      <Provider {...stores}>
+        <Router>
+          <Index path="/" />
+          <SignUpPage path="/signup" {...firebase} />
+          <NotFound path="*" />
+        </Router>
+      </Provider>
+    )
+}
 
 export default App;
