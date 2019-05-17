@@ -1,15 +1,22 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
+import { Router } from "@reach/router";
+
+import Index from '../../pages/index';
+import NotFound from '../../pages/nf';
+
+import auth from '../../store/auth';
 
 import './index.css';
-import Index from '../../pages/index';
-import auth from '../../store/auth';
 
 const stores = { auth };
 
 const App = () => (
     <Provider {...stores}>
-      <Index />
+      <Router>
+        <Index path="/" />
+        <NotFound path="*" />
+      </Router>
     </Provider>
 )
 

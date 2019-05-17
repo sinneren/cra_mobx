@@ -1,11 +1,10 @@
 import React from 'react';
 import Layout from '../../layouts/index';
 
-const Index = () => (
+const NotFound = () => (
     <Layout>
-        <h1>Main Content</h1>
+        <h1>404: Not Found</h1>
     </Layout>
 );
 
-
-export default Index;
+export default NotFound;
