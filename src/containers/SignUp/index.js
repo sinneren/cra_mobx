@@ -5,7 +5,7 @@ import SignUpForm from '../../components/SignUpForm';
 
 
 const SignUp = inject('authState')(
-    observer(
+     observer(
         class SignUp extends Component {
             constructor() {
                 super();
@@ -14,21 +14,20 @@ const SignUp = inject('authState')(
             }
             onSubmitHandler = (props) => {
                 this.props.doCreateUserWithEmailAndPassword(props.email, props.password)
-                .then((res) => {
-                    const inNew = res.additionalUserInfo.isNewUser;
-                    const uid = res.user.uid;
-                    this.props.authState.setAuth()
-                    console.log(this.props.authState)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
+                    .then((res) => {
+                        // const inNew = res.additionalUserInfo.isNewUser;
+                        // const uid = res.user.uid;
+                        this.props.authState.setAuth()
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
             }
             render() {
                 return <SignUpForm submitHandler={this.onSubmitHandler} />
             }
         }
-    )
-)
+     )
+);
 
 export default SignUp;

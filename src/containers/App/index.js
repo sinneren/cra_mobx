@@ -6,16 +6,14 @@ import Index from '../../pages/index';
 import NotFound from '../../pages/nf';
 import SignUpPage from '../../pages/signup';
 
-import authState from '../../store/authState';
-
+import store from '../../store';
 import './index.css';
 
-const stores = { authState };
 
 const App = (props) => {
     const { firebase } = props;
     return (
-      <Provider {...stores}>
+      <Provider {...store}>
         <Router>
           <Index path="/" />
           <SignUpPage path="/signup" {...firebase} />

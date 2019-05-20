@@ -1,19 +1,17 @@
 import {observable, computed, action} from 'mobx';
 
 class AuthState {
-    @observable authState;
+    @observable authState = null;
 
-    constructor() {
-        this.authState = false;
+    constructor(rootStore) {
+        this.rootStore = rootStore;
     }
     @computed get isAuth() {
         return this.authState;
     }
-    @action setAuth() {
-        this.authState = true;
+    @action setAuth = authState => {
+        this.authState = authState;
     }
 }
-const authState = new AuthState();
 
-export default authState;
-export { AuthState };
+export default AuthState;
