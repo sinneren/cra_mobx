@@ -6,11 +6,11 @@ import Index from '../../pages/index';
 import NotFound from '../../pages/nf';
 import SignUpPage from '../../pages/signup';
 
-import auth from '../../store/auth';
+import authState from '../../store/authState';
 
 import './index.css';
 
-const stores = { auth };
+const stores = { authState };
 
 const App = (props) => {
     const { firebase } = props;

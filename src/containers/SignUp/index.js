@@ -1,27 +1,34 @@
-import React from 'react';
-import { observer, inject } from 'mobx-react';
+import React, { Component } from "react";
+import { extendObservable } from "mobx";
+import { inject, observer } from "mobx-react";
 import SignUpForm from '../../components/SignUpForm';
 
-const SignUp = (props) => {
-    const createUser = props.doCreateUserWithEmailAndPassword;
 
-    const onSubmitHandler = (props) => {
-        createUser(props.email, props.password)
-            .then((res) => {
-                const inNew = res.additionalUserInfo.isNewUser;
-                const uid = res.user.uid;
-                inject('auth')(
-                    observer(({ auth }) => {
-                        console.log(auth.isAuth)
-                    })
-                )
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
-    return (
-        <SignUpForm submitHandler={onSubmitHandler} />
+const SignUp = inject('authState')(
+    observer(
+        class SignUp extends Component {
+            constructor() {
+                super();
+
+                extendObservable(this, {});
+            }
+            onSubmitHandler = (props) => {
+                this.props.doCreateUserWithEmailAndPassword(props.email, props.password)
+                .then((res) => {
+                    const inNew = res.additionalUserInfo.isNewUser;
+                    const uid = res.user.uid;
+                    this.props.authState.setAuth()
+                    console.log(this.props.authState)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+            }
+            render() {
+                return <SignUpForm submitHandler={this.onSubmitHandler} />
+            }
+        }
     )
-}
+)
+
 export default SignUp;
