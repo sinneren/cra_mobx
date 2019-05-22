@@ -5,6 +5,7 @@ import { Router } from "@reach/router";
 import Index from '../../pages/index';
 import NotFound from '../../pages/nf';
 import SignUpPage from '../../pages/signup';
+import SignInPage from '../../pages/signin';
 
 import store from '../../store';
 import './index.css';
@@ -17,6 +18,7 @@ const App = (props) => {
         <Router>
           <Index path="/" />
           <SignUpPage path="/signup" {...firebase} />
+          <SignInPage path="/signin" {...firebase} />
           <NotFound path="*" />
         </Router>
       </Provider>
